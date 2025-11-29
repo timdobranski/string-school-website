@@ -18,6 +18,7 @@ const nextConfig = {
         ...config.resolve.fallback,
         bufferutil: false,
         'utf-8-validate': false,
+        ws: false, // ← add this line
       }
     }
     return config

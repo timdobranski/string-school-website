@@ -87,10 +87,10 @@
     font-size: 1.5rem;
   }
   .slideButtonLeft, .slideButtonLeftDisabled {
-    left: 30px;
+    left: 60px;
   }
   .slideButtonRight, .slideButtonRightDisabled {
-    right: 30px;
+    right: 60px;
   }
   .slideButtonLeftDisabled, .slideButtonRightDisabled {
     background: rgba(0, 0, 0, .5);
@@ -233,3 +233,42 @@
     }
 
   }
+
+  .slide {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* New wrapper that shrinks to the image width and centers */
+.slideInner {
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* Use this class instead of .slide img for clarity */
+.carouselImage {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: 600px; /* keep your height cap */
+  object-fit: contain;
+}
+
+/* Caption now matches the width of slideInner (i.e. the image) */
+.caption {
+  position: relative;
+  bottom: 0;
+  background: var(--primary-blue);
+  color: white;
+  z-index: 2000;
+  font-size: 1.5rem;
+  width: 100%;       /* 100% of slideInner, not the whole carousel */
+  text-align: center;
+  padding: calc(.25rem + 2px) .5rem .25rem .5rem;
+  box-sizing: border-box;
+}

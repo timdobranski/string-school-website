@@ -26,7 +26,7 @@ export default function PublicHome() {
       <div id='welcome'>
         <PromoBlock
           direction={'left'}
-          background={'lightBackground1'}
+          background={'white'}
           title={'WELCOME!'}
           // titleClassName={'whiteTitle'}
           photo={{
@@ -42,7 +42,7 @@ export default function PublicHome() {
       <div id='stringSchoolApp'>
         <PromoBlock
           direction={'right'}
-          background={'white'}
+          background={'lightBackground1'}
           title={'The String School App'}
           photo={{
             image: '/images/home-page/tech-green-background.jpg',
@@ -58,19 +58,18 @@ export default function PublicHome() {
         <PromoBlock
           direction={'left'}
           title={'String School Concerts'}
-          background={'lightBackground1'}
+          background={'white'}
           photo={{
-            image: '/images/home-page/concerts-2.jpg',
-            webp: '/images/home-page/concerts-2.webp',
+            image: '/images/concerts/5.webp',
             styles: { border: 'solid 2px, rgba(255, 255, 255, .7'}}}
-          text={`Student concerts can be one of the most fun and exciting ways to show off your skills. I hold concerts twice per year, they include
+          text={`Student concerts can be one of the most fun and exciting ways to show off your skills. I hold concerts twice per year. They include
            top tier lighting and sound, and a custom-built stage set that rivals any concert venue in San Diego! Learn more about concerts <a style='text-decoration: underline' href="/concerts">here</a>.`}
         />
       </div>
       <div id='stringsmith'>
         <PromoBlock
           direction={'right'}
-          background={'white'}
+          background={'lightBackground1'}
           tag={'Coming 2025'}
           title={`Custom Tools\u00A0&\u00A0Games`}
           photo={{
@@ -85,7 +84,7 @@ export default function PublicHome() {
       <div id='studio'>
         <PromoBlock
           direction={'left'}
-          background={'lightBackground1'}
+          background={'white'}
 
           title={'String School Studio'}
           photo={{
@@ -94,14 +93,14 @@ export default function PublicHome() {
             styles: { border: 'solid 2px, rgba(255, 255, 255, .7'}}}
           text={`For those that are less inclined to be performers, you can record a song instead! Twice a year I offer the choice
       of a concert performance or recording studio time to record your own song! It can be an original, or a cover song of your choice that
-      we work on throughout the year. Learn more about the String School Studio`}
+      we work on throughout the year.`}
         />
       </div>
 
       <div id='book'>
         <PromoBlock
           direction={'right'}
-          background={'white'}
+          background={'lightBackground1'}
           title={'The String School Book'}
           photo={{
             image: '/images/home-page/book-mockup-wide.jpg',
@@ -116,7 +115,7 @@ export default function PublicHome() {
       <div id='progress'>
         <PromoBlock
           direction={'left'}
-          background={'lightBackground1'}
+          background={'white'}
           title={'Lesson Logs'}
           photo={{
             image: '/images/home-page/progress.jpg',
@@ -131,7 +130,7 @@ export default function PublicHome() {
       <div id='guitarPro'>
         <PromoBlock
           direction={'right'}
-          background={'white'}
+          background={'lightBackground1'}
           title={'Guitar Pro 8'}
           photo={{
             image: '/images/home-page/guitar-pro.jpg',
@@ -146,7 +145,7 @@ export default function PublicHome() {
       <div id='future'>
         <PromoBlock
           direction={'left'}
-          background={'lightBackground1'}
+          background={'white'}
           title={'The Future'}
           photo={{
             image: '/images/me/me-2.jpg',
