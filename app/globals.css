@@ -49,6 +49,10 @@
 
   --lightBackground1: rgb(241, 241, 241);
   --lightBackground2: rgb(220, 220, 220);
+  --studentStuffFormsBackground: rgba(0, 106, 152, 0.08);
+  --studentStuffResourcesBackground: rgba(238, 241, 246, 0.9);
+  --studentStuffPaymentsBackground: rgba(86, 180, 170, 0.12);
+  --aboutLessonsReviewsBackground: linear-gradient(180deg, #f4f7fa 0%, #ebf1f6 100%);
 
   --greenBackground1: rgb(187, 255, 187);
 

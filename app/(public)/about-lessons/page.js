@@ -872,20 +872,14 @@ export default function AboutLessons() {
 
         <div className={styles.textContainer}>
           <h2 className={"smallerSectionTitle"}>Software Development</h2>
-          <p className='text'>{`Around 2021 I returned to school myself to study software development. In 2024 I left the LMSV school district to
-        pursue a career in software development. I now work as a web developer for a media company in San Francisco and continue to teach in the evenings.
-        In my spare time I'm continuing to develop Stringsmith, my very own guitar learning and practice platform, which I hope to launch in early 2025.`}
+          <p className='text'>{`Around 2021, I returned to school to study software development. In 2024, I left the LMSV school district to pursue web development full-time. Today, I work as a web developer for a media company in San Francisco and still teach guitar lessons in the evenings. Outside of work, I’m continuing to build my own guitar learning and practice platform, which I hope to eventually launch within my String School app.`}
           </p>
         </div>
-
-        <div className={styles.textContainer}>
-          <h2 className={"smallerSectionTitle"}>The Future</h2>
-          <p className='text'>{`As 2024 begins to conclude, I'm still working closely with the LMSV school district to construct a very exciting and elaborate
-        stage set and lighting system for future String School concerts and school events. The set I've designed and am constructing alongside the Parkway
-        Academy engineering class will outshine almost any real concert venue in San Diego, and I'm beyond excited to unveil this at the next concert
-        in March 2025!`}
-          </p>
-        </div>
+<div className={styles.textContainer}>
+  <h2 className={"smallerSectionTitle"}>The Future</h2>
+  <p className='text'>{`As I continue building my guitar lesson program, I think it’s important to stay active in music outside of teaching too. In 2025, my old band had an unexpected resurgence because of a wave of interest on streaming and social media. That led to us writing our first new music in 20 years, after releasing an album back in 2005. It’s been really exciting to be part of that, and it helps keep me connected to music not just as a teacher, but as someone who still makes it too.`}
+  </p>
+</div>
 
         <MediaCarousel slides={concertSlides} />
 

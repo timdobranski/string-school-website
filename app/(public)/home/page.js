@@ -42,7 +42,7 @@ export default function PublicHome() {
       <div id='stringSchoolApp'>
         <PromoBlock
           direction={'right'}
-          background={'lightBackground1'}
+          background={'linear-gradient(180deg, #f4f7fa 0%, #ebf1f6 100%)'}
           title={'The String School App'}
           photo={{
             image: '/images/home-page/tech-green-background.jpg',
@@ -69,8 +69,8 @@ export default function PublicHome() {
       <div id='stringsmith'>
         <PromoBlock
           direction={'right'}
-          background={'lightBackground1'}
-          tag={'Coming 2025'}
+          background={'rgb(235, 243, 247)'}
+          tag={'Coming Soon'}
           title={`Custom Tools\u00A0&\u00A0Games`}
           photo={{
             image: '/images/home-page/stringsmith-mockup-blue.jpg',
@@ -100,7 +100,7 @@ export default function PublicHome() {
       <div id='book'>
         <PromoBlock
           direction={'right'}
-          background={'lightBackground1'}
+          background={'rgb(235, 246, 245)'}
           title={'The String School Book'}
           photo={{
             image: '/images/home-page/book-mockup-wide.jpg',
@@ -108,7 +108,7 @@ export default function PublicHome() {
           }}
           text={`The String School Guitar Method is my textbook, and it is currently in the second edition. Every student
       receives a free PDF copy, and printed copies are available at the cost of printing them. Much of the book teaches concepts through color-coded
-      charts and information, which has been a big help for students but also raises the cost of printing to around $45 or so in 2025.`}
+      charts and information, which has been a big help for students but also raises the cost of printing to around $45 or so.`}
         />
       </div>
 
@@ -130,7 +130,7 @@ export default function PublicHome() {
       <div id='guitarPro'>
         <PromoBlock
           direction={'right'}
-          background={'lightBackground1'}
+          background={'linear-gradient(180deg, #f4f7fa 0%, #ebf1f6 100%)'}
           title={'Guitar Pro 8'}
           photo={{
             image: '/images/home-page/guitar-pro.jpg',

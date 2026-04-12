@@ -4,8 +4,30 @@ import parse from 'html-react-parser';
 
 export default function PromoBlock({ title, text, photo, direction, background, titleClassName }) {
   console.log('webp: ', photo.webp);
+
+  const backgroundInput = typeof background === 'string' ? background.trim() : '';
+  const resolvedBackground =
+    backgroundInput.startsWith('--')
+      ? `var(${backgroundInput})`
+      : /^(#|rgb|hsl|white|black)/i.test(backgroundInput)
+        ? backgroundInput
+        : backgroundInput.includes('gradient(')
+          ? backgroundInput
+          : backgroundInput
+            ? `var(--${backgroundInput})`
+            : 'white';
+
+  const backgroundStyle = resolvedBackground.includes('gradient(')
+    ? {
+      backgroundColor: '#ffffff',
+      backgroundImage: resolvedBackground,
+    }
+    : {
+      backgroundColor: resolvedBackground || '#ffffff',
+    };
+
   return (
-    <div className={styles.background} style={{ background: `var(--${background})` }}>
+    <div className={styles.background} style={backgroundStyle}>
       <div
         className={`${styles.wrapper} ${direction === 'left' ? styles.left : styles.right}`}
       >
