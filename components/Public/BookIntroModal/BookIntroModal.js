@@ -54,6 +54,7 @@ export default function BookIntroModal({ isOpen, onClose }) {
             height="960"
             loading="lazy"
             referrerPolicy="strict-origin-when-cross-origin"
+            className={styles.bookingIframe}
           ></iframe>
         </div>
       </div>

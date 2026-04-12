@@ -20,6 +20,7 @@
 
   background: var(--primary-blue);
   color: white;
+  padding-inline: 0.8rem;
 
 }
 .leftSideNav, .rightSideNav {
@@ -293,6 +294,68 @@
   font-size: 1rem;
   /* color: var(--primary-blue); */
   transition: transform 0.5s;
+}
+
+.rightSideNav {
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 1280px) {
+  .headerContainer {
+    padding-inline: clamp(0.35rem, 0.9vw, 0.8rem);
+  }
+
+  .logoWrapper {
+    margin-left: clamp(0rem, 0.8vw, 1rem);
+  }
+
+  .logo, .iconLogo {
+    height: clamp(52px, 3.9vw, 65px);
+  }
+
+  .navLink {
+    margin: 0.5rem clamp(0.35rem, 0.95vw, 1.5rem);
+    font-size: clamp(0.83rem, 1vw, 1.25rem);
+  }
+
+  .navLink a {
+    padding-right: clamp(0.8rem, 0.95vw, 1.1rem);
+  }
+
+  .bookingLink {
+    font-size: clamp(0.78rem, 0.92vw, 1.25rem);
+    padding: .45rem clamp(0.5rem, 0.85vw, 1rem);
+    margin: .5rem clamp(0.35rem, 0.85vw, 1.5rem) .5rem clamp(0.25rem, 0.8vw, 1rem);
+  }
+
+  .icon, .dropdownIcon {
+    font-size: clamp(0.72rem, 0.85vw, 1rem);
+  }
+}
+
+@media (max-width: 1200px) {
+  .dropdown a, .settingsDropdown a, .linkText {
+    padding: 0.85rem 1.2rem 0.7rem 1.2rem;
+  }
+
+  .bookingLink {
+    border-width: 1px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .headerContainer {
+    padding-inline: 0.25rem;
+  }
+
+  .logoWrapper {
+    padding: 0.35rem;
+  }
+
+  .bookingLink {
+    padding-top: 0.6rem;
+  }
 }
 
 .settingsButton {

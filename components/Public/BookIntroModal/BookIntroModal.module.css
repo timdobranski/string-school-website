@@ -14,7 +14,7 @@
   position: relative;
   width: min(1120px, 100%);
   background: transparent;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 0;
   box-shadow: none;
   overflow: hidden;
@@ -57,8 +57,8 @@
 
 .iframeShell {
   overflow: hidden;
-  border-radius: 8px;
-  background: white;
+  border-radius: 0;
+  background: transparent;
   line-height: 0;
 }
 
@@ -72,10 +72,10 @@
   }
 
   .modalBody {
-    border-radius: 6px;
+    border-radius: 0;
   }
 
   .iframeShell {
-    border-radius: 6px;
+    border-radius: 0;
   }
 }
