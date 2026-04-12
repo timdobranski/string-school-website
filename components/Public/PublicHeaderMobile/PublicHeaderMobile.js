@@ -170,6 +170,15 @@ export default function PublicHeaderMobile() {
           </button>
         </div>
 
+        <Link
+          href="https://www.stringschool.app/"
+          className={styles.studentLoginCta}
+          onClick={handleCloseMenu}
+          aria-label="Go to Student Login"
+        >
+          <span className={styles.studentLoginCtaLabel}>Student Login</span>
+        </Link>
+
       </div>
 
 

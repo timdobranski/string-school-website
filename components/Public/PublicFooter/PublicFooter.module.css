@@ -1,6 +1,6 @@
 .wrapper {
   width: 100%;
-  min-height: 200px;
+  height: 200px !important;
   color: white;
   background: var(--primary-blue);
   display: flex;
@@ -9,8 +9,6 @@
   flex-direction: row;
   position: relative;
   bottom: 0;
-  padding-bottom: 0;
-  box-sizing: border-box;
 }
 
 .socialMedia {
@@ -55,7 +53,6 @@
   .wrapper {
     flex-direction: column;
     height: fit-content;
-    padding-bottom: 5rem;
   }
   .text {
     position: relative;

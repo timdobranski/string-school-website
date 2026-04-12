@@ -7,6 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 export default function BookIntroModal({ isOpen, onClose }) {
+  const defaultOrigin = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3001'
+    : 'https://stringschool.app';
+  const bookingOrigin = (process.env.NEXT_PUBLIC_BOOKING_IFRAME_ORIGIN || defaultOrigin).replace(/\/$/, '');
+  const bookingSrc = `${bookingOrigin}/book-intro?teacherProfileId=2ed29970-ff71-4a8e-9fb1-8731a739d350`;
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -42,14 +48,12 @@ export default function BookIntroModal({ isOpen, onClose }) {
 
         <div className={styles.iframeShell}>
           <iframe
-            src="http://localhost:3000/book-intro?teacherProfileId=2ed29970-ff71-4a8e-9fb1-8731a739d350"
+            src={bookingSrc}
             title="Book Intro Lesson"
             width="100%"
             height="960"
-            style={{ border: 0, maxWidth: '1100px' }}
             loading="lazy"
             referrerPolicy="strict-origin-when-cross-origin"
-            className={styles.bookingIframe}
           ></iframe>
         </div>
       </div>

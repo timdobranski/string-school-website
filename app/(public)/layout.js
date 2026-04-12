@@ -6,7 +6,7 @@ import PublicheaderMobile from '../../components/Public/PublicHeaderMobile/Publi
 import PublicFooter from '../../components/Public/PublicFooter/PublicFooter';
 import styles from './layout.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarDays, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 export default function PublicLayout({ children }) {
    useEffect(() => {
@@ -27,25 +27,14 @@ export default function PublicLayout({ children }) {
       <div id="mms-widget"></div>
 
       <a
-        href="/contact"
-        className={`${styles.floatingCta} ${styles.floatingStartCta}`}
-        aria-label="Start Lessons"
-      >
-        <span className={styles.floatingCtaIcon}>
-          <FontAwesomeIcon icon={faCalendarDays} />
-        </span>
-        <span className={styles.floatingCtaLabel}>Start Lessons</span>
-      </a>
-
-      <a
         href="https://www.stringschool.app/"
-        className={`${styles.floatingCta} ${styles.floatingStudentCta}`}
+        className={styles.floatingStudentCta}
         aria-label="Go to Student Login"
       >
-        <span className={styles.floatingCtaIcon}>
+        <span className={styles.floatingStudentCtaIcon}>
           <FontAwesomeIcon icon={faRightToBracket} />
         </span>
-        <span className={styles.floatingCtaLabel}>Student Login</span>
+        <span className={styles.floatingStudentCtaLabel}>Student Login</span>
       </a>
 
       <main className={styles.publicLayoutMain}>{children}</main>
