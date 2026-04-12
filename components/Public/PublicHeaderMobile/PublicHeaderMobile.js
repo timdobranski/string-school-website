@@ -6,6 +6,7 @@ import styles from './PublicHeaderMobile.module.css';
 import  { supabase } from '../../../utils/supabase';
 import { useEffect, useState } from 'react';
 import PublicTopbar from '../PublicTopbar/PublicTopbar';
+import BookIntroModal from '../BookIntroModal/BookIntroModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faBars, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +15,7 @@ export default function PublicHeaderMobile() {
   const [signedIn, setSignedIn] = useState(false);
   const [picture, setPicture] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [touchStartX, setTouchStartX] = useState(null);
 
   useEffect(() => {
@@ -151,8 +153,21 @@ export default function PublicHeaderMobile() {
           <Link href='/student-stuff-temp' onClick={handleCloseMenu}>STUDENTS</Link>
         </div>
 
+        <div className={styles.navLink}>
+          <Link href='/contact' onClick={handleCloseMenu}>CONTACT</Link>
+        </div>
+
         <div className={styles.bookingLink}>
-          <Link href='/contact' onClick={handleCloseMenu}>BOOK AN INTRO</Link>
+          <button
+            type="button"
+            className={styles.bookingTrigger}
+            onClick={() => {
+              handleCloseMenu();
+              setBookingModalOpen(true);
+            }}
+          >
+            BOOK AN INTRO
+          </button>
         </div>
 
       </div>
@@ -160,6 +175,11 @@ export default function PublicHeaderMobile() {
 
 
       {/* {signedIn ? settingsButton : loginButton} */}
+
+      <BookIntroModal
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
+      />
 
 
 

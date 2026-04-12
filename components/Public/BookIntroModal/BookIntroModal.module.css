@@ -1,0 +1,81 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+}
+
+.modalBody {
+  position: relative;
+  width: min(1120px, 100%);
+  background: transparent;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.closeIconButton {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--primary-blue);
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  line-height: 1;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  z-index: 2;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.85);
+}
+
+.closeIconButton:hover {
+  cursor: pointer;
+}
+
+.bookingIframe {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.iframeShell {
+  overflow: hidden;
+  border-radius: 8px;
+  background: white;
+  line-height: 0;
+}
+
+.closeIconButton svg {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .modalOverlay {
+    padding: 0.75rem;
+  }
+
+  .modalBody {
+    border-radius: 6px;
+  }
+
+  .iframeShell {
+    border-radius: 6px;
+  }
+}

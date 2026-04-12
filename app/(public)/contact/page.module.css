@@ -1,121 +1,201 @@
 .wrapper {
-  /* background: var(--lightBackground1); */
-  background-color: white;
   width: 100%;
-  padding: 4rem 2rem;
+  background: #f4f6f8;
+  color: #171717;
+  padding: 3rem 1.25rem 4rem;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  font-size: 1.25rem;
+  justify-content: center;
+}
 
-  /* border: solid red 2px; */
-}
-.sectionTitles {
-  color: var(--primary-blue);
-  margin: 2rem 0;
-  position: relative;
-  font-size: 2rem;
-  font-weight: 400;
-}
-.sectionTitles::after {
-  content: '';
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  height: 4px;
-  width: 100%;
-  background: var(--primary-gradient-darker);
-}
 .contentWrapper {
   width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 1rem
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 1.5rem;
 }
-.text {
-  margin: 0 0 1rem 0;
-  text-align: center;
-  color: black
+
+.pageHeader {
+  grid-column: 1 / -1;
+  width: fit-content;
+  justify-self: center;
 }
-.formsWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+
+.infoPanel,
+.formPanel {
+  background: #ffffff;
+  color: rgb(243, 243, 243);
+  border: 1px solid #d8dee5;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(12, 28, 45, 0.08);
 }
-.navLink {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+
+.infoPanel {
+  background: #f8fbfd;
+  background: none;
+  border: none;
+  /* border: 1px solid #4bc645; */
+  box-shadow: none;
 }
-.navLink a {
-  margin: 1rem 0;
+
+.panelHeading {
+  margin: 0 0 1rem;
+  color: #848484;
   color: var(--primary-blue);
-  background: var(--primary-gradient-darker);
-  padding: 1.25rem 1.5rem 1rem 1.5rem;
-  /* outline: solid 4px white; */
-  color: black;
-  text-decoration-color: rgb(116, 225, 141);
-  text-underline-offset: 2px;
-  transition: transform .2s;
-  /* border-radius: 2rem; */
-  width: 300px;
-  text-align: center;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-}
-.navLink a:hover {
-  /* border-color: white; */
-  transform: scale(1.1);
-}
-.label {
-  margin: .25rem 0 1.5rem 0;
-  width: 500px;
-  max-width: 90%;
-  text-align: center;
-}
-.paymentsSectionWrapper, .formsWrapper, .resourcesWrapper {
-  background: white;
-  background: var(--primary-blue);
-  color: white;
-  /* background: rgb(231, 231, 231); */
-  /* background: linear-gradient(to right, rgba(0, 108, 166, .5), rgba(105, 242, 155, .5)); */
-  width: 800px;
-  max-width: 98%;
-  padding: 0rem 0rem 2rem 0rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 1rem
-}
-.link {
-  background: none !important;
-  box-shadow: none !important;
-  color: white !important;
-  padding: unset !important;
-  text-decoration: underline;
   font-weight: bold;
+  font-size: 1.35rem;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; */
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
-@media(max-width: 768px) {
-  .label {
-    font-size: 1.5rem;
-    width: 90%;
-    max-width: 90% !important;
+
+.bodyText {
+  margin: 0 0 1rem;
+  color: #1f1f1f;
+  line-height: 1.6;
+  font-size: 1.25rem;
+}
+
+.actionsRow {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.scheduleButton,
+.submitButton {
+  appearance: none;
+  border: 1px solid #006A98;
+  border-radius: 3px;
+  padding: 0.7rem 1rem 0.7rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  background-color: #006A98;
+  background-image: none;
+  color: #FFFFFF;
+  box-shadow: none;
+  transform: scale(1);
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.scheduleButton:hover,
+.submitButton:hover {
+  background-color: #75D68A;
+  background-image: linear-gradient(90deg, #B4E8A2 0%, #7FF0C6 100%);
+  border-color: #66CE53;
+  color: #000000;
+  box-shadow: 0 5px 12px rgba(102, 206, 83, 0.3);
+  transform: scale(1.05);
+}
+
+.scheduleButton:active,
+.submitButton:active {
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(102, 206, 83, 0.35);
+}
+
+.fieldLabel {
+  display: block;
+  margin: 0.65rem 0 0.35rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #202020;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid #c9d5df;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1.2rem;
+  color: #101010;
+  background: #fff;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: 2px solid #7ec0d6;
+  border-color: #7ec0d6;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.textarea:-webkit-autofill,
+.textarea:-webkit-autofill:hover,
+.textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #101010;
+  box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.submitButton {
+  margin-top: 1rem;
+}
+
+.statusText {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.statusSuccess {
+  color: #14532d;
+  background: #dcfce7;
+  border-color: #86efac;
+}
+
+.statusError {
+  color: #7f1d1d;
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+@media (max-width: 900px) {
+  .contentWrapper {
+    grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 768px) {
   .wrapper {
-    padding: 2rem 1rem;
+    padding: 2rem 0.75rem 3rem;
   }
-  .paymentsSectionWrapper, .formsWrapper, .resourcesWrapper {
-    margin: 0;
+
+  .infoPanel {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .sectionTitles {
-    font-size: 1.5rem;
+
+  .actionsRow {
+    justify-content: center;
+  }
+
+  .infoPanel,
+  .formPanel {
+    padding: 1rem;
+  }
+
+  .panelHeading {
+    font-size: 1.2rem;
   }
 }

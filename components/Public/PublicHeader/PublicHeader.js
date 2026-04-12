@@ -7,6 +7,7 @@ import styles from './PublicHeader.module.css';
 import { supabase } from '../../../utils/supabase';
 import { useEffect, useState, useRef } from 'react';
 import PublicTopbar from '../PublicTopbar/PublicTopbar';
+import BookIntroModal from '../BookIntroModal/BookIntroModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faHouse, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -21,6 +22,7 @@ export default function PublicHeader() {
   const pathname = usePathname(); // Get the current route
   const isStudentOrTeacherPage = pathname.startsWith('/students') || pathname.startsWith('/teacher');
   const [settingsDropdownOpen, setSettingsDropdownOpen] = useState(false);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [disabledDropdowns, setDisabledDropdowns] = useState({
     home: false,
@@ -231,8 +233,15 @@ export default function PublicHeader() {
       {createNavLink('/reviews', 'REVIEWS')}
       {createNavLink('/concerts', 'CONCERTS')}
       {createNavLink('/student-stuff-temp', 'STUDENTS')}
+      {createNavLink('/contact', 'CONTACT')}
       <div className={styles.bookingLink}>
-        <Link href="/contact">SCHEDULE A FREE&nbsp;INTRO</Link>
+        <button
+          type="button"
+          className={styles.bookingTrigger}
+          onClick={() => setBookingModalOpen(true)}
+        >
+          SCHEDULE A FREE INTRO
+        </button>
       </div>
     </>
   );
@@ -290,6 +299,11 @@ export default function PublicHeader() {
         {isStudentOrTeacherPage && signedIn && userEmail !== 'tim@lamesastringschool.com' && studentLinks}
         {signedIn ? settingsButton : null}
       </div>
+
+      <BookIntroModal
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
+      />
     </div>
   );
 }
