@@ -13,10 +13,10 @@
 .modalBody {
   position: relative;
   width: min(1120px, 100%);
-  background: transparent;
-  border-radius: 0;
+  background: #fff;
+  border-radius: 16px;
   padding: 0;
-  box-shadow: none;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
   overflow: hidden;
 }
 
@@ -52,13 +52,13 @@
   border: 0;
   outline: none;
   box-shadow: none;
-  background: transparent;
+  background: #fff;
 }
 
 .iframeShell {
   overflow: hidden;
-  border-radius: 0;
-  background: transparent;
+  border-radius: 16px;
+  background: #fff;
   line-height: 0;
 }
 
@@ -72,10 +72,10 @@
   }
 
   .modalBody {
-    border-radius: 0;
+    border-radius: 12px;
   }
 
   .iframeShell {
-    border-radius: 0;
+    border-radius: 12px;
   }
 }

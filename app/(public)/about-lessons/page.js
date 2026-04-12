@@ -265,6 +265,7 @@ function ReviewsCarousel({ reviews }) {
 }
 
 export default function AboutLessons() {
+  const pageRef = useRef(null);
   const studioVideos= ['https://www.youtube.com/embed/EraS5O2kslY?si=JmyTG0q11QSwQBq8', 'https://www.youtube.com/embed/Yco7rXyXhaU?si=hOMpC-BJ2bUqJ4Uj']
   const studioPhotos = ['/images/studio/1.webp', '/images/studio/2.webp', '/images/studio/3.webp', '/images/studio/4.webp', '/images/studio/5.webp',
     '/images/studio/6.webp', '/images/studio/7.webp', '/images/studio/8.webp', '/images/studio/9.webp', '/images/studio/10.webp', '/images/studio/11.webp'];
@@ -423,8 +424,60 @@ export default function AboutLessons() {
     }
   }, [detailsSlide])
 
+  useEffect(() => {
+    const root = pageRef.current;
+    if (!root) return;
+
+    const selector = [
+      `.${styles.contentWrapper}`,
+      `.${styles.lessonInfoWrapper}`,
+      `.${styles.lessonInfoWrapperMidMargin}`,
+      `.${styles.contentSectionWrapper}`,
+      `.${styles.curriculumGrid}`,
+      `.${styles.policiesWrapper}`,
+      `.${styles.studioToggle}`,
+      `.${styles.mediaCarouselShell}`,
+      `.${styles.aboutReviewsShell}`,
+      `.${styles.textContainer}`,
+      '.sectionTitle',
+      '.sectionTitleWhite',
+      '.sectionTitleDesktop',
+      '.sectionTitleMobile',
+      '.smallerSectionTitle',
+    ].join(', ');
+
+    const revealTargets = Array.from(new Set(root.querySelectorAll(selector)));
+    if (revealTargets.length === 0) return;
+
+    revealTargets.forEach((node) => node.classList.add(styles.revealOnScroll));
+
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      revealTargets.forEach((node) => node.classList.add(styles.revealVisible));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.revealVisible);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: '0px 0px -8% 0px',
+      }
+    );
+
+    revealTargets.forEach((node) => observer.observe(node));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={pageRef}>
 
       <Hero
         type={'photo'}

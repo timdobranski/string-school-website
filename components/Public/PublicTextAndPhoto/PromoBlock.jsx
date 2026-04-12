@@ -60,8 +60,10 @@ export default function PromoBlock({ title, text, photo, direction, background, 
       <div
         className={`${styles.wrapper} ${direction === 'left' ? styles.left : styles.right} ${styles.animateIn} ${hasEntered ? styles.animateInVisible : ''}`}
       >
+        <h3 className={`${styles.mobileTitle} ${'smallerSectionTitle'} ${styles[titleClassName]}`}>{title}</h3>
+
         <div className={`${styles.textSide} ${styles.textAnimate} ${direction === 'left' ? styles.fromLeft : styles.fromRight} ${hasEntered ? styles.contentVisible : ''}`}>
-          <h3 className={`${'smallerSectionTitle'} ${styles[titleClassName]}`}>{title}</h3>
+          <h3 className={`${styles.desktopTitle} ${'smallerSectionTitle'} ${styles[titleClassName]}`}>{title}</h3>
           <p className={`${titleClassName === 'whiteTitle' ? styles.whiteText : styles.text}`}>
             {parse(text)}
           </p>
