@@ -1,9 +1,38 @@
 'use client'
 import styles from './PromoBlock.module.css';
 import parse from 'html-react-parser';
+import { useEffect, useRef, useState } from 'react';
 
 export default function PromoBlock({ title, text, photo, direction, background, titleClassName }) {
-  console.log('webp: ', photo.webp);
+  const blockRef = useRef(null);
+  const [hasEntered, setHasEntered] = useState(false);
+
+  useEffect(() => {
+    const node = blockRef.current;
+    if (!node) return;
+
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setHasEntered(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -8% 0px',
+      }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
 
   const backgroundInput = typeof background === 'string' ? background.trim() : '';
   const resolvedBackground =
@@ -27,18 +56,18 @@ export default function PromoBlock({ title, text, photo, direction, background, 
     };
 
   return (
-    <div className={styles.background} style={backgroundStyle}>
+    <div ref={blockRef} className={styles.background} style={backgroundStyle}>
       <div
-        className={`${styles.wrapper} ${direction === 'left' ? styles.left : styles.right}`}
+        className={`${styles.wrapper} ${direction === 'left' ? styles.left : styles.right} ${styles.animateIn} ${hasEntered ? styles.animateInVisible : ''}`}
       >
-        <div className={styles.textSide}>
+        <div className={`${styles.textSide} ${styles.textAnimate} ${direction === 'left' ? styles.fromLeft : styles.fromRight} ${hasEntered ? styles.contentVisible : ''}`}>
           <h3 className={`${'smallerSectionTitle'} ${styles[titleClassName]}`}>{title}</h3>
           <p className={`${titleClassName === 'whiteTitle' ? styles.whiteText : styles.text}`}>
             {parse(text)}
           </p>
         </div>
 
-        <div className={styles.photoSide}>
+        <div className={`${styles.photoSide} ${styles.photoAnimate} ${direction === 'left' ? styles.fromRight : styles.fromLeft} ${hasEntered ? styles.contentVisible : ''}`}>
         <picture className={styles.pictureElement}>
           <source srcSet={photo.webp} type="image/webp" />
           <img
