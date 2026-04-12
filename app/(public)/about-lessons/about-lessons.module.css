@@ -6,7 +6,7 @@
   align-items: center;
   /* margin-top: 4rem; */
 }
-.section0Container, .section1Container, .section2Container, .section3Container, .section4Container, .section5Container {
+.section0Container, .section1Container, .section2Container, .section3Container, .section4Container, .sectionReviewsContainer, .section5Container {
   background: var(--lightBackground1);
   position: relative;
   width: 100%;
@@ -238,6 +238,10 @@ list-style: none;
 }
 .section5Container {
   background: var(--lightBackground1);
+}
+
+.sectionReviewsContainer {
+  background: linear-gradient(180deg, #f4f7fa 0%, #ebf1f6 100%);
 }
 
 
@@ -516,6 +520,331 @@ justify-content: center;
   margin-bottom: 2rem;
 }
 
+.mediaCarouselShell {
+  width: min(1000px, 90%);
+  margin: 0 auto;
+}
+
+.studioToggle {
+  width: min(1000px, 90%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0 0 1.35rem;
+}
+
+.studioToggleButton {
+  appearance: none;
+  border: solid 2px var(--primary-blue);
+  background: transparent;
+  color: var(--primary-blue);
+  font-family: Josefin Sans, sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 0.55rem 0.9rem 0.45rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.studioToggleButton:hover {
+  transform: translateY(-1px);
+}
+
+.studioToggleButtonActive {
+  background: var(--primary-blue);
+  color: #fff;
+}
+
+.carouselSpacer {
+  height: 2.75rem;
+}
+
+.mediaCarouselViewport {
+  position: relative;
+  overflow: hidden;
+  transition: height 0.6s ease;
+}
+
+.mediaCarouselTrack {
+  display: flex;
+  align-items: flex-start;
+  transition: transform 0.38s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+.mediaCarouselSlide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+.mediaCard {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.mediaFrame {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #000;
+}
+
+.mediaIframe,
+.mediaImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.mediaImage {
+  object-fit: contain;
+}
+
+.mediaCaption {
+  margin: 0;
+  background: transparent;
+  color: var(--primary-blue);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  text-align: center;
+  padding: 1.1rem 0.75rem 0.7rem;
+}
+
+.mediaNavButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 106, 152, 0.9);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.mediaNavButtonLeft {
+  left: 0.65rem;
+}
+
+.mediaNavButtonRight {
+  right: 0.65rem;
+}
+
+.mediaNavButton:hover {
+  background: #0c79a9;
+  transform: translateY(calc(-50% - 1px));
+}
+
+.mediaPaginationRow {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.mediaDots {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mediaDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  background: #8ea9bd;
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.mediaDotActive {
+  background: #006a98;
+  opacity: 1;
+}
+
+.aboutReviewsShell {
+  width: min(900px, 90%);
+  margin: 0 auto;
+}
+
+.aboutReviewsViewport {
+  overflow: hidden;
+  transition: height 0.6s ease;
+}
+
+.aboutReviewsTrack {
+  display: flex;
+  align-items: flex-start;
+  transition: transform 0.38s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+.aboutReviewsSlide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+.aboutReviewCard {
+  text-align: left;
+  background: #fff;
+  border: 1px solid #d8e2ea;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 1.4rem 1.5rem 1.6rem;
+  margin: 0.25rem 0 0.6rem;
+}
+
+.aboutReviewTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.aboutReviewerBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.aboutReviewerPhoto,
+.aboutReviewerFallback {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d0dde7;
+}
+
+.aboutReviewerPhoto {
+  width: 56px !important;
+  height: 56px !important;
+  flex: 0 0 56px;
+  display: block;
+}
+
+.aboutReviewerFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4b6375;
+  background: #e9f0f5;
+}
+
+.aboutReviewerFallback svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.aboutReviewerName {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #0f2433;
+}
+
+.aboutReviewDate {
+  margin: 0.25rem 0 0;
+  color: #5f7382;
+  font-size: 0.95rem;
+}
+
+.aboutRatingRow {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.aboutStarIcon {
+  color: #f7ba26;
+  font-size: 1rem;
+}
+
+.aboutQuoteRow {
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.aboutQuoteIcon {
+  color: #5d788c;
+  font-size: 1.15rem;
+  margin-top: 0.2rem;
+}
+
+.aboutReviewText {
+  margin: 0;
+  color: #1a2a36;
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+.aboutReviewsNavRow {
+  margin: 0 0 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1.4rem;
+}
+
+.aboutReviewsNavButton {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 106, 152, 0.9);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.aboutReviewsNavButton:hover {
+  background: #0c79a9;
+  transform: translateY(-1px);
+}
+
+.aboutReviewsPaginationRow {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutReviewsDots {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.aboutReviewsDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  background: #8ea9bd;
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.aboutReviewsDotActive {
+  background: #006a98;
+  opacity: 1;
+}
+
 @media(max-width: 768px) {
   .section1Container {
     padding: 4rem 0 2rem 0 !important;
@@ -746,7 +1075,7 @@ justify-content: center;
   .slideButtonRight, .slideButtonRightDisabled {
     right: 10px;
   }
-  .section0Container, .section1Container, .section2Container, .section3Container, .section4Container, .section5Container {
+  .section0Container, .section1Container, .section2Container, .section3Container, .section4Container, .sectionReviewsContainer, .section5Container {
     padding: 4rem 0 0 0;
   }
   .section4Container {
@@ -774,6 +1103,65 @@ justify-content: center;
     margin: 1rem;
     color: white;
     list-style: none;
+  }
+
+  .mediaCarouselShell {
+    width: 100%;
+  }
+
+  .studioToggle {
+    width: 100%;
+    gap: 0.55rem;
+    margin: 0 0 1rem;
+    padding: 0 0.6rem;
+    box-sizing: border-box;
+  }
+
+  .studioToggleButton {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.7rem 0.4rem;
+  }
+
+  .mediaNavButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mediaNavButtonLeft {
+    left: 0.45rem;
+  }
+
+  .mediaNavButtonRight {
+    right: 0.45rem;
+  }
+
+  .mediaCaption {
+    font-size: 1.15rem;
+  }
+
+  .aboutReviewsNavRow {
+    margin: 0 0 0.75rem;
+    gap: 1rem;
+  }
+
+  .aboutReviewsNavButton {
+    width: 34px;
+    height: 34px;
+  }
+
+  .aboutReviewCard {
+    padding: 1rem 0.95rem 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .aboutReviewTopRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .aboutReviewText {
+    font-size: 1.05rem;
+    line-height: 1.55;
   }
 
 }

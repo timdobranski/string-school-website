@@ -28,9 +28,6 @@
   align-items: center;
   justify-content: center;
 }
-.rightSideNav {
-
-}
 .teacherTitle {
   position: absolute;
   left: 50%;
@@ -130,6 +127,13 @@
   /* border-radius: 4px; */
   /* border: solid 1px black; */
   color: white;
+  white-space: nowrap;
+}
+
+.navLink a {
+  position: relative;
+  display: inline-block;
+  padding-right: calc(1.1rem + 5px);
 }
 .navLink:hover {
   cursor: pointer;
@@ -153,6 +157,11 @@
 }
 .icon {
   color: white;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
 }
 .dropdownIcon {
   color: var(--primary-blue);
@@ -199,7 +208,7 @@
   display: block; /* Show dropdown when the whole container is hovered */
 }
 .navLinkContainer:hover .icon {
-  transform: rotate(180deg)
+  transform: translateY(-50%) rotate(180deg)
 }
 
 .bookingLink {
@@ -212,23 +221,25 @@
   font-weight: bold;
   background: var(--primary-blue);
   color: white;
-  transition: transform 0.5s;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.05s ease;
   text-align: center;
-  background: var(--primary-gradient);
-  background: #95d478;
-  background: var(--secondary-gradient);
+  background-color: #75D68A;
+  /* background-image: linear-gradient(90deg, #B4E8A2 0%, #7FF0C6 100%); */
   /* background: var(--primary-green); */
   /* background: #8bc66f; */
   /* background: #a5e687; */
   /* background: #aeff88; */
   padding-top: .75rem;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
-  border: solid white 2px;
+  box-shadow: 0 5px 12px rgba(102, 206, 83, 0.3);
+  border: solid #66CE53 2px;
+  border-color: white;
   /* border-radius: 4px; */
   height: auto;
+  display: inline-flex;
+  justify-content: center;
   /* width: 200px; */
-  /* width: fit-content; */
-  width: auto;
+  width: fit-content;
+  flex: 0 0 auto;
   min-width: unset;
 }
 .bookingLink a {
@@ -246,8 +257,7 @@
   appearance: none;
   border: none;
   background: transparent;
-  color: white;
-  color: rgb(64, 64, 64);
+  color: #000;
   /* text-shadow: 0 0 6px rgba(27, 79, 31, 0.432); */
   font-size: inherit;
   font-weight: 400;
@@ -256,13 +266,25 @@
   margin: 0;
   font-family: inherit;
   cursor: pointer;
+  width: auto;
+  white-space: nowrap;
 }
 .bookingTrigger:hover {
   cursor: pointer;
 }
+
+.bookingBreak {
+  display: none;
+}
 .bookingLink:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+@media (max-width: 1500px) {
+  .bookingBreak {
+    display: block;
+  }
 }
 
 

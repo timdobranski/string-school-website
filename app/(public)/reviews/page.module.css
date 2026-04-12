@@ -1,5 +1,7 @@
 .reviewsWrapper {
   background: linear-gradient(180deg, #f4f7fa 0%, #ebf1f6 100%);
+  min-height: 100vh;
+  width: 100%;
   padding: 1.5rem 1rem 3rem;
   display: flex;
   flex-direction: column;

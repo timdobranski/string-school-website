@@ -1,15 +1,268 @@
 'use client'
 
 import styles from './about-lessons.module.css'
-import { useState, useEffect, useRef } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useState, useEffect, useRef, useMemo } from 'react';
 // import '@fortawesome/fontawesome-svg-core/styles.css';
 // import { config } from '@fortawesome/fontawesome-svg-core';
 // config.autoAddCss = false;
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faMicrophone, faLaptop, faUser, faLocationDot, faClock, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faMicrophone, faLaptop, faUser, faLocationDot, faClock, faDollarSign, faStar, faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import Hero from '../../../components/Public/PublicHero/Hero';
+import reviewsData from '../reviews/reviewsData';
+
+function MediaCarousel({ slides }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [carouselHeight, setCarouselHeight] = useState(0);
+  const touchStartX = useRef(null);
+  const slideRefs = useRef([]);
+
+  const previousSlide = () => {
+    setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const nextSlide = () => {
+    setActiveIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) return;
+
+    const deltaX = event.changedTouches[0].clientX - touchStartX.current;
+    const threshold = 45;
+
+    if (deltaX > threshold) {
+      previousSlide();
+    } else if (deltaX < -threshold) {
+      nextSlide();
+    }
+
+    touchStartX.current = null;
+  };
+
+  useEffect(() => {
+    let animationFrameId;
+
+    const updateHeight = () => {
+      const currentSlide = slideRefs.current[activeIndex];
+      if (currentSlide) {
+        setCarouselHeight(currentSlide.scrollHeight + 32);
+      }
+    };
+
+    animationFrameId = window.requestAnimationFrame(updateHeight);
+
+    const observedSlide = slideRefs.current[activeIndex];
+    const resizeObserver = new ResizeObserver(() => updateHeight());
+    if (observedSlide) {
+      resizeObserver.observe(observedSlide);
+    }
+
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, [activeIndex]);
+
+  return (
+    <div className={styles.mediaCarouselShell} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <div className={styles.mediaCarouselViewport} style={carouselHeight ? { height: `${carouselHeight}px` } : undefined}>
+        <button
+          type="button"
+          className={`${styles.mediaNavButton} ${styles.mediaNavButtonLeft}`}
+          onClick={previousSlide}
+          aria-label="Previous slide"
+        >
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </button>
+
+        <button
+          type="button"
+          className={`${styles.mediaNavButton} ${styles.mediaNavButtonRight}`}
+          onClick={nextSlide}
+          aria-label="Next slide"
+        >
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
+
+        <div className={styles.mediaCarouselTrack} style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+          {slides.map((slide, index) => (
+            <div key={`${slide.type}-${index}`} className={styles.mediaCarouselSlide}>
+              <article className={styles.mediaCard} ref={(el) => { slideRefs.current[index] = el; }}>
+                <div className={styles.mediaFrame}>
+                  {slide.type === 'video' ? (
+                    <iframe
+                      src={slide.src}
+                      className={styles.mediaIframe}
+                      title={slide.caption || `Video ${index + 1}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <img src={slide.src} alt={slide.caption || `Slide ${index + 1}`} className={styles.mediaImage} />
+                  )}
+                </div>
+                <p className={styles.mediaCaption}>{slide.caption}</p>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={styles.mediaPaginationRow}>
+        <div className={styles.mediaDots}>
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              className={`${styles.mediaDot} ${index === activeIndex ? styles.mediaDotActive : ''}`}
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ReviewsCarousel({ reviews }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [carouselHeight, setCarouselHeight] = useState(0);
+  const touchStartX = useRef(null);
+  const slideRefs = useRef([]);
+
+  const previousReview = () => {
+    setActiveIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+  };
+
+  const nextReview = () => {
+    setActiveIndex((prev) => (prev + 1) % reviews.length);
+  };
+
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) return;
+
+    const deltaX = event.changedTouches[0].clientX - touchStartX.current;
+    const threshold = 45;
+
+    if (deltaX > threshold) {
+      previousReview();
+    } else if (deltaX < -threshold) {
+      nextReview();
+    }
+
+    touchStartX.current = null;
+  };
+
+  useEffect(() => {
+    let animationFrameId;
+
+    const updateHeight = () => {
+      const currentSlide = slideRefs.current[activeIndex];
+      if (currentSlide) {
+        setCarouselHeight(currentSlide.scrollHeight + 24);
+      }
+    };
+
+    animationFrameId = window.requestAnimationFrame(updateHeight);
+
+    const observedSlide = slideRefs.current[activeIndex];
+    const resizeObserver = new ResizeObserver(() => updateHeight());
+    if (observedSlide) {
+      resizeObserver.observe(observedSlide);
+    }
+
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, [activeIndex]);
+
+  return (
+    <div className={styles.aboutReviewsShell} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <div className={styles.aboutReviewsNavRow}>
+        <button type="button" className={styles.aboutReviewsNavButton} onClick={previousReview} aria-label="Previous review">
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </button>
+
+        <button type="button" className={styles.aboutReviewsNavButton} onClick={nextReview} aria-label="Next review">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
+      </div>
+
+      <div className={styles.aboutReviewsViewport} style={carouselHeight ? { height: `${carouselHeight}px` } : undefined}>
+        <div className={styles.aboutReviewsTrack} style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+          {reviews.map((review, index) => (
+            <div key={`${review.name}-${index}`} className={styles.aboutReviewsSlide}>
+              <article className={styles.aboutReviewCard} ref={(el) => { slideRefs.current[index] = el; }}>
+                <div className={styles.aboutReviewTopRow}>
+                  <div className={styles.aboutReviewerBlock}>
+                    {review.photo ? (
+                      <img src={review.photo} alt={`${review.name} profile`} className={styles.aboutReviewerPhoto} />
+                    ) : (
+                      <div className={styles.aboutReviewerFallback}>
+                        <FontAwesomeIcon icon={faUser} />
+                      </div>
+                    )}
+                    <div>
+                      <h3 className={styles.aboutReviewerName}>{review.name}</h3>
+                      <p className={styles.aboutReviewDate}>{review.day} {review.year}</p>
+                    </div>
+                  </div>
+
+                  <div className={styles.aboutRatingRow} aria-label="5 star review">
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <FontAwesomeIcon key={starIndex} icon={faStar} className={styles.aboutStarIcon} />
+                    ))}
+                  </div>
+                </div>
+
+                <div className={styles.aboutQuoteRow}>
+                  <FontAwesomeIcon icon={faQuoteLeft} className={styles.aboutQuoteIcon} />
+                  <p className={styles.aboutReviewText}>{review.text}</p>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={styles.aboutReviewsPaginationRow}>
+        <div className={styles.aboutReviewsDots}>
+          {reviews.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              className={`${styles.aboutReviewsDot} ${index === activeIndex ? styles.aboutReviewsDotActive : ''}`}
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Go to review ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function AboutLessons() {
   const studioVideos= ['https://www.youtube.com/embed/EraS5O2kslY?si=JmyTG0q11QSwQBq8', 'https://www.youtube.com/embed/Yco7rXyXhaU?si=hOMpC-BJ2bUqJ4Uj']
@@ -21,12 +274,21 @@ export default function AboutLessons() {
 
   const lobbyPhotos = ['/images/lobby/1.webp', '/images/lobby/2.webp', '/images/lobby/3.webp', '/images/lobby/4.webp'];
   const lobbyCaptions = ['Waiting Room(daytime)', 'Waiting Room(daytime)', 'Waiting Room(nighttime)', 'Waiting Room(nighttime)'];
-  const outsidePhotos= ['/images/outside/1.webp', '/images/outside/2.webp']
-
-  const [studioCarousel, setStudioCarousel] = useState('videos');
-  const [lobbyCarousel, setLobbyCarousel] = useState('videos');
+  const studioSlides = [
+    ...studioVideos.map((src, index) => ({ type: 'video', src, caption: studioCaptions[index] })),
+    ...studioPhotos.map((src, index) => ({
+      type: 'image',
+      src,
+      caption: studioCaptions[index + studioVideos.length],
+    })),
+  ];
+  const lobbySlides = [
+    ...lobbyVideos.map((src, index) => ({ type: 'video', src, caption: lobbyCaptions[index] || 'Waiting Room' })),
+    ...lobbyPhotos.map((src, index) => ({ type: 'image', src, caption: lobbyCaptions[index] || 'Waiting Room' })),
+  ];
   const [approachSlide, setApproachSlide] = useState(0);
   const [detailsSlide, setDetailsSlide] = useState(0);
+  const [studioAreaView, setStudioAreaView] = useState('studio');
   const [approachHeight, setApproachHeight] = useState(0)
   const [detailsHeight, setDetailsHeight] = useState(0)
   const approachRef = useRef(null)
@@ -52,6 +314,37 @@ export default function AboutLessons() {
       caption: 'Starlight Theater, Los Angeles 2013'
     },
   ]
+  const concertSlides = concertPhotos.map((item) => ({
+    type: 'image',
+    src: item.image,
+    caption: item.caption,
+  }));
+  const sortedReviews = useMemo(() => {
+    const monthOrder = {
+      Jan: 0,
+      Feb: 1,
+      Mar: 2,
+      Apr: 3,
+      May: 4,
+      Jun: 5,
+      Jul: 6,
+      Aug: 7,
+      Sep: 8,
+      Oct: 9,
+      Nov: 10,
+      Dec: 11,
+    };
+
+    const parseReviewDate = (review) => {
+      const [monthToken, dayToken] = (review.day || '').split(' ');
+      const month = monthOrder[monthToken] ?? 0;
+      const day = Number(dayToken) || 1;
+      const year = Number(review.year) || 0;
+      return new Date(year, month, day).getTime();
+    };
+
+    return [...reviewsData].sort((a, b) => parseReviewDate(b) - parseReviewDate(a));
+  }, []);
 
   useEffect(() => {
     if (!approachRef.current) return
@@ -129,18 +422,6 @@ export default function AboutLessons() {
       })
     }
   }, [detailsSlide])
-
-  const nextSlideArrow = (handleClick, hasNext) => (
-    <button disabled={!hasNext} className={hasNext ? styles.slideButtonRight : styles.slideButtonRightDisabled} onClick={handleClick}>
-      <FontAwesomeIcon icon={faChevronRight}  className={styles.slideButtonIcon}/>
-    </button>
-  );
-
-  const prevSlideArrow = (handleClick, hasPrev) => (
-    <button disabled={!hasPrev} className={hasPrev ? styles.slideButtonLeft : styles.slideButtonLeftDisabled} onClick={handleClick}>
-      <FontAwesomeIcon icon={faChevronLeft} className={styles.slideButtonIcon}/>
-    </button>
-  );
 
   return (
     <div className={styles.wrapper}>
@@ -401,6 +682,8 @@ export default function AboutLessons() {
           </div>
         </div>
 
+      </div>
+
 
 
       <div className={styles.section2Container} id='details'>
@@ -532,115 +815,33 @@ export default function AboutLessons() {
             where you can access the wifi and use the restroom while you wait. Parents are welcome to sit in on lessons, wait in the waiting room, or drop their kiddos
             off, so long as they are sure to return before the end of the lesson.`}</p>
         </div>
-        <Carousel
-          className={styles.carousel}
-          showArrows={true}
-          swipeable={true}
-          dynamicHeight={false}
-          emulateTouch={true}
-          useKeyboardArrows={true}
-          centerMode={true}
-          centerSlidePercentage={100}
-          transitionTime={500}
-          swipeScrollTolerance={5}
-          renderArrowPrev={prevSlideArrow}
-          renderArrowNext={nextSlideArrow}
-          showStatus={false}
-          showThumbs={false}
-          showIndicators={false}
-        >
-          {studioVideos.map((src, index) => (
-            <div className={styles.slide} key={index}>
-              <div className={styles.videoSlide}>
-                <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}>
-                  <iframe
-                    src={studioVideos[index]}
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      border: 0,
-                      margin: 0
-                    }}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
-                </div>
-                <p className={styles.caption}>{studioCaptions[index]}</p>
-              </div>
-            </div>
-          ))}
+        <div className={styles.studioToggle}>
+          <button
+            type="button"
+            className={`${styles.studioToggleButton} ${studioAreaView === 'studio' ? styles.studioToggleButtonActive : ''}`}
+            onClick={() => setStudioAreaView('studio')}
+          >
+            Studio
+          </button>
+          <button
+            type="button"
+            className={`${styles.studioToggleButton} ${studioAreaView === 'waiting-room' ? styles.studioToggleButtonActive : ''}`}
+            onClick={() => setStudioAreaView('waiting-room')}
+          >
+            Waiting Room
+          </button>
+        </div>
+        <MediaCarousel slides={studioAreaView === 'studio' ? studioSlides : lobbySlides} />
 
+      </div>
 
-          {studioPhotos.map((src, index) => (
-            <div className={styles.slide} key={index}>
-              <img key={index} src={src} alt={`Photo ${index + 1}`} />
-              <p className={styles.caption}>{studioCaptions[index + studioVideos.length]}</p>
-
-            </div>
-          ))}
-        </Carousel>
-        <br></br>
-
-        <Carousel
-          className={styles.carousel}
-          showArrows={true}
-          swipeable={true}
-          dynamicHeight={false}
-          emulateTouch={true}
-          useKeyboardArrows={true}
-          centerMode={true}
-          centerSlidePercentage={100}
-          transitionTime={500}
-          swipeScrollTolerance={5}
-          renderArrowPrev={prevSlideArrow}
-          renderArrowNext={nextSlideArrow}
-          showStatus={false}
-          showIndicators={false}
-          showThumbs={false}
-        >
-          {lobbyVideos.map((src, index) => (
-            <div className={styles.slide} key={index}>
-              <div className={styles.videoSlide}>
-                <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}>
-                  <iframe
-                    src={lobbyVideos[index]}
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      border: 0,
-                      margin: 0
-                    }}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
-                </div>
-                <p className={styles.caption}>{studioCaptions[index]}</p>
-              </div>
-            </div>
-          ))}
-
-          {lobbyPhotos.map((src, index) => (
-            <div className={styles.slide} key={index}>
-              <img key={index} src={src} alt={`Photo ${index + 1}`} />
-              <p className={styles.caption}>Waiting Room</p>
-
-            </div>
-          ))}
-
-        </Carousel>
-
+      <div className={styles.sectionReviewsContainer} id='reviews'>
+        <h2 className={"sectionTitle"}>Reviews</h2>
+        <div className={styles.lessonInfoWrapperMidMargin}>
+          <p className='text'>{`I'm very proud of the feedback I've received from my students over the years. My students have become
+            friends and even neighbors. See what everyone is saying about their experience learning with me below:`}</p>
+        </div>
+        <ReviewsCarousel reviews={sortedReviews} />
       </div>
 
       <div className={styles.section5Container} id='tim'>
@@ -686,36 +887,10 @@ export default function AboutLessons() {
           </p>
         </div>
 
-        <Carousel
-          className={styles.carousel}
-          showArrows={true}
-          swipeable={true}
-          dynamicHeight={false}
-          emulateTouch={true}
-          useKeyboardArrows={true}
-          centerMode={true}
-          centerSlidePercentage={100}
-          transitionTime={500}
-          swipeScrollTolerance={5}
-          renderArrowPrev={prevSlideArrow}
-          renderArrowNext={nextSlideArrow}
-          showStatus={false}
-          showIndicators={false}
-          showThumbs={false}
-        >
-          {concertPhotos.map((src, index) => (
-            <div className={styles.slide} key={index}>
-              <img key={index} src={src.image} alt={`Photo ${index + 1}`} />
-              <p className={styles.caption}>{src.caption}</p>
-
-            </div>
-          ))}
-
-        </Carousel>
+        <MediaCarousel slides={concertSlides} />
 
 
       </div>
-          </div>
     </div>
   )
 }

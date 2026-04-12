@@ -226,11 +226,12 @@ export default function PublicHeader() {
           {createNavLink('/about-lessons#details', 'WHEN, WHERE & HOW MUCH', true)}
           {createNavLink('/about-lessons#policies', 'ATTENDANCE POLICIES', true)}
           {createNavLink('/about-lessons#studio', 'SEE THE STUDIO', true)}
+          {createNavLink('/about-lessons#reviews', 'REVIEWS', true)}
           {createNavLink('/about-lessons#tim', 'ABOUT ME', true)}
         </div>
       </div>
 
-      {createNavLink('/reviews', 'REVIEWS')}
+      {/* {createNavLink('/reviews', 'REVIEWS')} */}
       {createNavLink('/concerts', 'CONCERTS')}
       {createNavLink('/student-stuff-temp', 'STUDENTS')}
       {createNavLink('/contact', 'CONTACT')}
@@ -240,7 +241,9 @@ export default function PublicHeader() {
           className={styles.bookingTrigger}
           onClick={() => setBookingModalOpen(true)}
         >
-          SCHEDULE A FREE INTRO
+          {'SCHEDULE A\u00A0'}
+          <br className={styles.bookingBreak} />
+          {'FREE\u00A0INTRO'}
         </button>
       </div>
     </>
