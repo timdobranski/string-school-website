@@ -190,7 +190,9 @@
 .dropdown a, .settingsDropdown a, .linkText {
   display: block;
   padding: 1rem 1.5rem .75rem 1.5rem;
-  color: black;
+  color: var(--primary-blue);
+  font-weight: 400;
+  font-size: 1.1rem;
   text-decoration: none;
   width: fit-content;
   width: auto;
@@ -201,8 +203,13 @@
   background: var(--primary-gradient-darker);
   width: 100%;
   cursor: pointer;
+  color: black;
 
   /* color: white; */
+}
+
+.flexRow:hover .linkText {
+  color: black;
 }
 
 .navLinkContainer:hover .dropdown {

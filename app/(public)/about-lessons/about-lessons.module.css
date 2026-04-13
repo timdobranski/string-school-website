@@ -58,9 +58,6 @@
   font-size: 1.35rem;
   margin: 1rem 3rem;
   color: var(--primary-blue);
-  text-decoration: underline;
-  text-decoration-color: rgb(156, 211, 130);
-  text-underline-offset: 4px;
   font-weight: 400;
   text-align: center;
   list-style: none;
@@ -394,15 +391,23 @@ list-style: none;
   color: var(--primary-blue);
 }
 .link, .topOfSectionLink {
-  display: block;
   color: var(--primary-blue);
   text-decoration: underline;
   font-size: 1.25rem;
+}
+
+.link {
+  display: inline;
+  width: auto;
+  text-align: inherit;
+  margin: 0;
+}
+
+.topOfSectionLink {
+  display: block;
   width: fit-content;
   text-align: center;
   margin: 0 auto;
-}
-.topOfSectionLink {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }

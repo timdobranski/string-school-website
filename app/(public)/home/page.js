@@ -23,7 +23,7 @@ export default function PublicHome() {
         text={[]}
       />
 
-      <div id='welcome'>
+      <div id='welcome' className={styles.promoSection}>
         <PromoBlock
           direction={'left'}
           background={'white'}
@@ -39,7 +39,7 @@ export default function PublicHome() {
         />
       </div>
 
-      <div id='stringSchoolApp'>
+      <div id='stringSchoolApp' className={styles.promoSection}>
         <PromoBlock
           direction={'right'}
           background={'linear-gradient(180deg, #f4f7fa 0%, #ebf1f6 100%)'}
@@ -54,7 +54,7 @@ export default function PublicHome() {
        app for iOS and Android as well.`}
         />
       </div>
-      <div id='concerts'>
+      <div id='concerts' className={styles.promoSection}>
         <PromoBlock
           direction={'left'}
           title={'String School Concerts'}
@@ -66,7 +66,7 @@ export default function PublicHome() {
            top tier lighting and sound, and a custom-built stage set that rivals any concert venue in San Diego! Learn more about concerts <a style='text-decoration: underline' href="/concerts">here</a>.`}
         />
       </div>
-      <div id='stringsmith'>
+      <div id='stringsmith' className={styles.promoSection}>
         <PromoBlock
           direction={'right'}
           background={'rgb(235, 243, 247)'}
@@ -81,7 +81,7 @@ export default function PublicHome() {
              be launched as a standalone learning platform for those who are not students in the future. Check out a free preview example <a style='text-decoration: underline' href="https://stringsmith.vercel.app/fretboard">here</a>.`}
         />
       </div>
-      <div id='studio'>
+      <div id='studio' className={styles.promoSection}>
         <PromoBlock
           direction={'left'}
           background={'white'}
@@ -97,7 +97,7 @@ export default function PublicHome() {
         />
       </div>
 
-      <div id='book'>
+      <div id='book' className={styles.promoSection}>
         <PromoBlock
           direction={'right'}
           background={'rgb(235, 246, 245)'}
@@ -112,7 +112,7 @@ export default function PublicHome() {
         />
       </div>
 
-      <div id='progress'>
+      <div id='progress' className={styles.promoSection}>
         <PromoBlock
           direction={'left'}
           background={'white'}
@@ -127,7 +127,7 @@ export default function PublicHome() {
         />
       </div>
 
-      <div id='guitarPro'>
+      <div id='guitarPro' className={styles.promoSection}>
         <PromoBlock
           direction={'right'}
           background={'linear-gradient(180deg, #f4f7fa 0%, #ebf1f6 100%)'}
@@ -142,7 +142,7 @@ export default function PublicHome() {
 
 
 
-      <div id='future'>
+      <div id='future' className={styles.promoSection}>
         <PromoBlock
           direction={'left'}
           background={'white'}

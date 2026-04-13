@@ -777,25 +777,17 @@ export default function AboutLessons() {
             <p className="text">
               Lessons are offered in 30 minute recurring weekly blocks at the following times.
               Students interested in longer or more frequent lessons are welcome to book multiple spots.
-              View my current schedule openings through a live Google Doc{' '}
-              <a
-                href="https://docs.google.com/document/d/18_k8ToYmk2PYpF2TiPqBhdFUpaXBPx7VqTcrwoZfQxk/edit?tab=t.0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-              >
-                here
-              </a>.
+
             </p>
             <table className={styles.scheduleTable}>
               <tbody>
                 <tr>
                   <td className={styles.days}>Mon-Thu</td>
-                  <td className={styles.times}>4:30pm - 8:00pm</td>
+                  <td className={styles.times}>5:00pm - 7:00pm</td>
                 </tr>
                 <tr>
                   <td className={styles.days}>Fri</td>
-                  <td className={styles.times}>4:30pm - 6:00pm</td>
+                  <td className={styles.times}>5:00pm - 6:00pm</td>
                 </tr>
                 <tr>
                   <td className={styles.days}>Sun</td>
