@@ -910,7 +910,7 @@ export default function AboutLessons() {
         to various schools throughout the district to teach guitar and culminating in a student concert. In 2009
         I began offering private guitar lessons while attending San Diego State University. As I continued to teach, I began to develop a deep
         interest in music pedagogy and in finding ways to help my students learn quickly and more effectively. In the years since then,
-        I've prided myself in offering innovative and effective ideas to improve my lessons and help students learn quickly and more effectively.`}
+        I've prided myself on offering innovative and effective ideas to improve my lessons and help students learn quickly and more effectively.`}
           </p>
         </div>
 
